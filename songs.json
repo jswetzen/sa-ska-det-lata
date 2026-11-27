@@ -1,0 +1,15 @@
+[
+  { "title": "Tomtarnas julnatt", "lang": "svenska", "red": [1, 3], "words": ["Månen", "vandrar", "sin", "tysta", "ban"] },
+  { "title": "Jingle Bells", "lang": "engelska", "red": [0, 4], "words": ["In", "a", "one-horse", "open", "sleigh"] },
+  { "title": "Silent Night", "lang": "engelska", "red": [2, 4], "words": ["Shepherds", "quake", "at", "the", "sight"] },
+  { "title": "Joy to the World", "lang": "engelska", "red": [0, 2], "words": ["Let", "earth", "receive", "her", "King"] },
+  { "title": "Deck the Halls", "lang": "engelska", "red": [1, 4], "words": ["Troll", "the", "ancient", "Yuletide", "carol"] },
+  { "title": "O Come, All Ye Faithful", "lang": "engelska", "red": [3, 4], "words": ["O", "come,", "all", "ye", "faithful"] },
+  { "title": "Hark! The Herald Angels Sing", "lang": "engelska", "red": [0, 3], "words": ["Hark!", "The", "herald", "angels", "sing"] },
+  { "title": "We Wish You a Merry Christmas", "lang": "engelska", "red": [1, 2], "words": ["And", "a", "happy", "New", "Year"] },
+  { "title": "The First Noel", "lang": "engelska", "red": [2, 3], "words": ["Was", "to", "certain", "poor", "shepherds"] },
+  { "title": "God Rest Ye Merry, Gentlemen", "lang": "engelska", "red": [0, 1], "words": ["God", "rest", "ye", "merry,", "gentlemen"] },
+  { "title": "Good King Wenceslas", "lang": "engelska", "red": [1, 3], "words": ["Good", "King", "Wenceslas", "looked", "out"] },
+  { "title": "Away in a Manger", "lang": "engelska", "red": [2, 4], "words": ["The", "little", "Lord", "Jesus", "asleep"] },
+  { "title": "O Little Town of Bethlehem", "lang": "engelska", "red": [0, 4], "words": ["O", "little", "town", "of", "Bethlehem"] }
+]

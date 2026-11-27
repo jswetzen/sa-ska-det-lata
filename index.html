@@ -132,6 +132,9 @@
   #start .go { margin-top: 2vmin; display: inline-block; padding: .7em 1.6em; border-radius: 999px; background: var(--red); border: 2px solid var(--gold); color: var(--gold); font-weight: 800; font-size: clamp(16px, 3vmin, 30px); animation: pulse 1.8s ease-in-out infinite; }
   @keyframes pulse { 50% { transform: scale(1.06); } }
   #start.hide { display: none; }
+  #start .status { font-weight: 800; color: var(--gold); }
+  #start .status code { font-size: .9em; padding: .1em .4em; border-radius: .3em; background: rgba(0,0,0,.35); color: var(--cream); }
+  #start .go[hidden] { display: none; }
 
   #toast.alert { background: var(--red); border: 2px solid var(--gold); color: var(--cream); font-size: clamp(20px, 5vmin, 56px); bottom: auto; top: 11%; white-space: nowrap; }
   #toast {
@@ -181,48 +184,81 @@
   <h2>Julspecial</h2>
   <h1>Så ska det låta</h1>
   <p>Fem luckor, ett ord i varje. Två av dem är röda – öppnar ni en av dem går svaret över till andra laget. Tangent 1–5 väljer lucka, pilarna byter låt.</p>
-  <span class="go">Klicka eller tryck valfri tangent för att starta</span>
+  <p class="status" id="status">Laddar låtar…</p>
+  <span class="go" hidden>Klicka eller tryck valfri tangent för att starta</span>
 </div>
 <div id="toast"></div>
-
-<!--
-  Låtdata. Varje låt har exakt 5 ord (ett per lucka, i ordning) och "red" = vilka två luckor
-  (0–4, alltså lucka 1–5 minus ett) som är röda: då går svaret över till andra laget.
-  Utelämnas "red" slumpas två luckor. Använd bara texter du har rätt att använda.
--->
-<script id="songs" type="application/json">
-[
-  { "title": "Tomtarnas julnatt", "lang": "svenska", "red": [1, 3], "words": ["Månen", "vandrar", "sin", "tysta", "ban"] },
-  { "title": "Jingle Bells", "lang": "engelska", "red": [0, 4], "words": ["In", "a", "one-horse", "open", "sleigh"] },
-  { "title": "Silent Night", "lang": "engelska", "red": [2, 4], "words": ["Shepherds", "quake", "at", "the", "sight"] },
-  { "title": "Joy to the World", "lang": "engelska", "red": [0, 2], "words": ["Let", "earth", "receive", "her", "King"] },
-  { "title": "Deck the Halls", "lang": "engelska", "red": [1, 4], "words": ["Troll", "the", "ancient", "Yuletide", "carol"] },
-  { "title": "O Come, All Ye Faithful", "lang": "engelska", "red": [3, 4], "words": ["O", "come,", "all", "ye", "faithful"] },
-  { "title": "Hark! The Herald Angels Sing", "lang": "engelska", "red": [0, 3], "words": ["Hark!", "The", "herald", "angels", "sing"] },
-  { "title": "We Wish You a Merry Christmas", "lang": "engelska", "red": [1, 2], "words": ["And", "a", "happy", "New", "Year"] },
-  { "title": "The First Noel", "lang": "engelska", "red": [2, 3], "words": ["Was", "to", "certain", "poor", "shepherds"] },
-  { "title": "God Rest Ye Merry, Gentlemen", "lang": "engelska", "red": [0, 1], "words": ["God", "rest", "ye", "merry,", "gentlemen"] },
-  { "title": "Good King Wenceslas", "lang": "engelska", "red": [1, 3], "words": ["Good", "King", "Wenceslas", "looked", "out"] },
-  { "title": "Away in a Manger", "lang": "engelska", "red": [2, 4], "words": ["The", "little", "Lord", "Jesus", "asleep"] },
-  { "title": "O Little Town of Bethlehem", "lang": "engelska", "red": [0, 4], "words": ["O", "little", "town", "of", "Bethlehem"] }
-]
-</script>
 
 <script>
 (() => {
   'use strict';
-  const SONGS = JSON.parse(document.getElementById('songs').textContent);
   const grid = document.getElementById('grid');
   const answerEl = document.getElementById('answer');
   const countEl = document.getElementById('count');
   const startEl = document.getElementById('start');
   const toastEl = document.getElementById('toast');
+  const statusEl = document.getElementById('status');
+  const goEl = startEl.querySelector('.go');
 
-  let order = SONGS.map((_, i) => i);
+  // Fylls av loadSongs() innan spelet kan startas.
+  let SONGS = [], redOf = [], order = [], opened = [], answered = [];
   let pos = 0;
   let started = false;
-  const opened = SONGS.map(() => new Set());   // öppnade luckor per låt
-  const answered = SONGS.map(() => false);     // svar visat per låt
+  let ready = false;
+
+  /* ---------- Låtdata ---------- */
+  // Same rules as scripts/check-songs.mjs; keep the two in step.
+  function songProblem(s) {
+    if (!s || typeof s !== 'object' || Array.isArray(s)) return 'not an object';
+    if (typeof s.title !== 'string' || !s.title.trim()) return 'missing or empty "title"';
+    if (s.lang !== undefined && typeof s.lang !== 'string') return '"lang" must be a string';
+    if (!Array.isArray(s.words) || s.words.length !== 5) return '"words" must be exactly 5 strings';
+    if (s.words.some(w => typeof w !== 'string' || !w.trim())) return '"words" must be non-empty strings';
+    if (s.red === undefined) return '';
+    if (!Array.isArray(s.red) || s.red.length !== 2) return '"red" must be exactly 2 indices';
+    if (s.red.some(r => !Number.isInteger(r) || r < 0 || r > 4)) return '"red" indices must be integers 0–4';
+    if (s.red[0] === s.red[1]) return '"red" indices must be distinct';
+    return '';
+  }
+
+  async function fetchJson(file) {
+    const res = await fetch(file, { cache: 'no-cache' });
+    if (!res.ok) throw new Error(file + ': HTTP ' + res.status);
+    return res.json();
+  }
+
+  // songs.local.json (gitignored) wins if present; anything wrong with it falls back to songs.json.
+  async function loadSongs() {
+    let data = null, file = 'songs.local.json';
+    try { data = await fetchJson(file); }
+    catch (e) {
+      if (e instanceof SyntaxError) console.warn('songs.local.json is not valid JSON, using songs.json', e);
+    }
+    if (!Array.isArray(data)) {
+      file = 'songs.json';
+      try { data = await fetchJson(file); }
+      catch (e) {
+        if (location.protocol === 'file:' || e instanceof TypeError) {
+          throw new Error('Låtlistan kan inte läsas när sidan öppnas direkt som fil. ' +
+            'Starta en webbserver i mappen, t.ex. <code>python3 -m http.server</code>, ' +
+            'och öppna <code>http://localhost:8000</code>.');
+        }
+        throw new Error('Kunde inte läsa songs.json (' + escapeHtml(e.message) + ').');
+      }
+    }
+    if (!Array.isArray(data)) throw new Error(file + ' måste innehålla en lista (JSON-array) med låtar.');
+    const valid = data.filter((s, i) => {
+      const p = songProblem(s);
+      if (p) console.warn(`${file}: skipping song #${i + 1}${s && s.title ? ' "' + s.title + '"' : ''}: ${p}`);
+      return !p;
+    });
+    if (!valid.length) throw new Error('Inga giltiga låtar hittades i ' + file + '. Se konsolen för detaljer.');
+    return valid;
+  }
+
+  function escapeHtml(t) {
+    return String(t).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  }
 
   const cur = () => SONGS[order[pos]];
   const curId = () => order[pos];
@@ -235,7 +271,6 @@
     toast.t = setTimeout(() => toastEl.classList.remove('on'), alert ? 2600 : 1400);
   }
 
-  const redOf = SONGS.map(sg => (sg.red && sg.red.length ? sg.red : pickRed()));
   function pickRed() {
     const a = [0, 1, 2, 3, 4].sort(() => Math.random() - .5);
     return a.slice(0, 2);
@@ -398,7 +433,7 @@
   }
 
   function start() {
-    if (started) return;
+    if (started || !ready) return;
     started = true;
     audio();
     startEl.classList.add('hide');
@@ -486,7 +521,20 @@
   addEventListener('resize', sizeCanvas);
   if (!reduce) requestAnimationFrame(tick);
 
-  render();
+  loadSongs().then(songs => {
+    SONGS = songs;
+    redOf = SONGS.map(sg => sg.red || pickRed());
+    order = SONGS.map((_, i) => i);
+    opened = SONGS.map(() => new Set());   // öppnade luckor per låt
+    answered = SONGS.map(() => false);     // svar visat per låt
+    ready = true;
+    statusEl.hidden = true;
+    goEl.hidden = false;
+    render();
+  }, err => {
+    console.error(err);
+    statusEl.innerHTML = err.message;
+  });
 })();
 </script>
 </body>

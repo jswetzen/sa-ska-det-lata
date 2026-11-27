@@ -1,0 +1,16 @@
+# Private song list (may contain copyrighted lyrics) – never commit
+songs.local.json
+
+node_modules/
+test-results/
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*~
