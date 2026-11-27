@@ -1,0 +1,15 @@
+{
+  "name": "sa-ska-det-lata",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Christmas 'Så ska det låta' guessing game – fullscreen, keyboard-driven, GitHub Pages.",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "test": "node scripts/check-songs.mjs",
+    "smoke": "node scripts/smoke.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.65.1"
+  }
+}
