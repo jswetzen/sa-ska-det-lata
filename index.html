@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Så ska det låta – Julspecial</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Mountains+of+Christmas:wght@700&family=Nunito:wght@600;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #f2c14e;
+    --gold-deep: #c8932a;
+    --red: #b3202a;
+    --red-deep: #7d1119;
+    --green: #0f3d2e;
+    --green-deep: #05201a;
+    --cream: #fff6dc;
+    --ink: #2a1a12;
+    --display: "Mountains of Christmas", "Georgia", serif;
+    --body: "Nunito", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; overflow: hidden; }
+  body {
+    font-family: var(--body);
+    color: var(--cream);
+    background: radial-gradient(ellipse at 50% 20%, var(--green) 0%, var(--green-deep) 75%);
+    -webkit-user-select: none; user-select: none;
+  }
+  #snow { position: fixed; inset: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0; }
+
+  #app {
+    position: relative; z-index: 1;
+    height: 100%; display: flex; flex-direction: column;
+    padding: clamp(10px, 2vmin, 28px); gap: clamp(8px, 1.6vmin, 20px);
+  }
+
+  header { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .brand { font-family: var(--display); font-size: clamp(26px, 5vmin, 56px); color: var(--gold); line-height: 1; text-shadow: 0 2px 0 rgba(0,0,0,.35); }
+  .brand small { font-family: var(--body); font-weight: 800; font-size: .32em; letter-spacing: .18em; text-transform: uppercase; color: var(--cream); opacity: .7; margin-left: .6em; }
+  .meta { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: clamp(13px, 2.2vmin, 22px); }
+  .meta .count { opacity: .85; white-space: nowrap; }
+  .meta button {
+    font: inherit; font-weight: 800; color: var(--cream); background: rgba(255,255,255,.1);
+    border: 1px solid rgba(255,255,255,.25); border-radius: 999px; width: 2.4em; height: 2.4em; cursor: pointer;
+  }
+  .meta button:hover { background: rgba(255,255,255,.22); }
+
+  #grid { flex: 1; min-height: 0; display: flex; align-items: center; justify-content: center; gap: clamp(8px, 2vw, 40px); }
+
+  .card { position: relative; flex: none; width: min(17vw, 34vh); aspect-ratio: 3 / 4; perspective: 1200px; cursor: pointer; }
+  @media (max-aspect-ratio: 1/1) { .card { width: 17vw; aspect-ratio: 2 / 5; } #grid { gap: 1.4vw; } }
+  .inner { position: absolute; inset: 0; transform-style: preserve-3d; transition: transform .65s cubic-bezier(.3,.7,.2,1); }
+  .card.open .inner { transform: rotateY(180deg); }
+  .card.instant .inner { transition: none; }
+  .face {
+    position: absolute; inset: 0; container-type: size;
+    -webkit-backface-visibility: hidden; backface-visibility: hidden;
+    border-radius: clamp(10px, 2vmin, 26px);
+    display: flex; align-items: center; justify-content: center; text-align: center; overflow: hidden;
+  }
+  .front {
+    background:
+      radial-gradient(circle at 50% 35%, rgba(255,255,255,.2), transparent 60%),
+      linear-gradient(160deg, #1f7a52 0%, #0e4a33 100%);
+    border: 3px solid var(--gold);
+    box-shadow: 0 8px 22px rgba(0,0,0,.45), inset 0 0 0 6px rgba(0,0,0,.14), inset 0 0 0 8px rgba(242,193,78,.45);
+  }
+  .card.mark.red .front::after { content: ""; position: absolute; top: 6cqmin; right: 6cqmin; width: 11cqmin; height: 11cqmin; border-radius: 50%; background: var(--red); border: 2px solid var(--cream); }
+  .front .num {
+    font-family: var(--display); color: var(--gold);
+    font-size: min(60cqw, 42cqh); line-height: 1;
+    text-shadow: 0 3px 0 rgba(0,0,0,.4), 0 0 24px rgba(242,193,78,.35);
+  }
+  .card:hover .front { filter: brightness(1.12); }
+  .back {
+    transform: rotateY(180deg);
+    background: linear-gradient(170deg, #fffaf0, var(--cream));
+    color: var(--ink);
+    border: 3px solid var(--gold);
+    box-shadow: 0 8px 22px rgba(0,0,0,.45), inset 0 0 0 6px rgba(179,32,42,.12);
+    padding: 0;
+  }
+  .back .badge {
+    position: absolute; top: 5cqh; left: 5cqw; width: 2.1em; height: 2.1em; border-radius: 50%;
+    font-size: clamp(11px, 7cqmin, 24px); background: var(--red); color: var(--gold);
+    font-family: var(--display); display: grid; place-items: center; line-height: 1;
+  }
+  .back .line {
+    display: inline-block; white-space: nowrap; font-weight: 800; line-height: 1.1;
+    font-size: clamp(12px, 17cqw, 90px);
+  }
+  .back.red { background: linear-gradient(170deg, #d8323d, var(--red-deep)); color: var(--cream); box-shadow: 0 8px 22px rgba(0,0,0,.45), 0 0 34px rgba(216,50,61,.6); }
+  .back.red .badge { background: var(--cream); color: var(--red); }
+  .back .flag { position: absolute; left: 0; right: 0; bottom: 6cqh; font-size: clamp(10px, 6.5cqw, 22px); font-weight: 800; letter-spacing: .12em; text-transform: uppercase; opacity: .9; }
+
+  .answer {
+    min-height: clamp(52px, 9vmin, 96px);
+    border-radius: 999px; border: 2px dashed rgba(242,193,78,.55);
+    display: flex; align-items: center; justify-content: center; gap: .6em; padding: 0 1.4em; text-align: center;
+    font-weight: 800; font-size: clamp(16px, 3.6vmin, 38px);
+    background: rgba(0,0,0,.22); transition: background .3s, border-color .3s;
+  }
+  .answer.revealed { background: var(--gold); color: var(--ink); border: 2px solid var(--gold-deep); }
+  .answer .title { font-family: var(--display); font-size: 1.35em; line-height: 1.1; }
+  .answer .lang { font-size: .55em; opacity: .75; letter-spacing: .08em; text-transform: uppercase; }
+  .answer .q { opacity: .75; }
+
+  footer { display: flex; flex-wrap: wrap; justify-content: center; gap: .5em 1.4em; font-size: clamp(12px, 1.9vmin, 18px); }
+  footer .grp { display: inline-flex; align-items: center; gap: .3em; }
+  footer .lbl { opacity: .75; margin-left: .3em; }
+  footer button {
+    font: inherit; font-weight: 800; color: var(--cream); cursor: pointer; min-width: 2.2em; min-height: 2.2em; padding: .1em .7em;
+    border-radius: .55em; background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.3);
+    touch-action: manipulation; -webkit-tap-highlight-color: transparent;
+  }
+  footer button:hover { background: rgba(242,193,78,.35); }
+  footer button:active { transform: scale(.94); background: var(--gold); color: var(--ink); }
+  kbd {
+    font: inherit; font-weight: 800; padding: .05em .5em; border-radius: .4em;
+    background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.28);
+  }
+
+  #start {
+    position: fixed; inset: 0; z-index: 10; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 1.2vmin; text-align: center; padding: 24px; cursor: pointer;
+    background: radial-gradient(ellipse at 50% 30%, rgba(15,61,46,.97), rgba(5,32,26,.99));
+  }
+  #start h1 { font-family: var(--display); color: var(--gold); font-size: clamp(44px, 12vmin, 140px); line-height: 1; text-shadow: 0 4px 0 rgba(0,0,0,.4); }
+  #start h2 { font-weight: 800; letter-spacing: .3em; text-transform: uppercase; font-size: clamp(14px, 3vmin, 30px); opacity: .85; }
+  #start p { margin-top: 3vmin; font-size: clamp(14px, 2.6vmin, 26px); opacity: .9; max-width: 34em; }
+  #start .go { margin-top: 2vmin; display: inline-block; padding: .7em 1.6em; border-radius: 999px; background: var(--red); border: 2px solid var(--gold); color: var(--gold); font-weight: 800; font-size: clamp(16px, 3vmin, 30px); animation: pulse 1.8s ease-in-out infinite; }
+  @keyframes pulse { 50% { transform: scale(1.06); } }
+  #start.hide { display: none; }
+
+  #toast.alert { background: var(--red); border: 2px solid var(--gold); color: var(--cream); font-size: clamp(20px, 5vmin, 56px); bottom: auto; top: 11%; white-space: nowrap; }
+  #toast {
+    position: fixed; left: 50%; bottom: 12%; transform: translateX(-50%) translateY(10px); z-index: 5;
+    background: rgba(0,0,0,.75); color: var(--cream); padding: .6em 1.2em; border-radius: 999px; font-weight: 800;
+    opacity: 0; transition: opacity .25s, transform .25s; pointer-events: none;
+  }
+  #toast.on { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+  @media (prefers-reduced-motion: reduce) {
+    .inner { transition-duration: .01s; }
+    #start .go { animation: none; }
+  }
+  @media (max-width: 560px) { .brand small { display: none; } footer { gap: .5em .9em; } }
+</style>
+</head>
+<body>
+<canvas id="snow"></canvas>
+
+<div id="app">
+  <header>
+    <div class="brand">Så ska det låta<small>Julspecial</small></div>
+    <div class="meta">
+      <button id="prev" aria-label="Föregående låt">◀</button>
+      <span class="count" id="count"></span>
+      <button id="next" aria-label="Nästa låt">▶</button>
+    </div>
+  </header>
+
+  <main id="grid" aria-live="polite"></main>
+
+  <div class="answer" id="answer"></div>
+
+  <footer id="keys">
+    <span class="grp"><kbd>1</kbd>–<kbd>5</kbd><span class="lbl">lucka</span></span>
+    <span class="grp"><button data-act="prev">←</button><button data-act="next">→</button><span class="lbl">byt låt</span></span>
+    <span class="grp"><button data-act="answer">Mellanslag</button><span class="lbl">visa svar</span></span>
+    <span class="grp"><button data-act="all">A</button><span class="lbl">öppna alla</span></span>
+    <span class="grp"><button data-act="none">R</button><span class="lbl">stäng alla</span></span>
+    <span class="grp"><button data-act="marks">M</button><span class="lbl">visa röda</span></span>
+    <span class="grp"><button data-act="shuffle">S</button><span class="lbl">blanda</span></span>
+    <span class="grp"><button data-act="fs">F</button><span class="lbl">fullskärm</span></span>
+  </footer>
+</div>
+
+<div id="start" role="button" tabindex="0">
+  <h2>Julspecial</h2>
+  <h1>Så ska det låta</h1>
+  <p>Fem luckor, ett ord i varje. Två av dem är röda – öppnar ni en av dem går svaret över till andra laget. Tangent 1–5 väljer lucka, pilarna byter låt.</p>
+  <span class="go">Klicka eller tryck valfri tangent för att starta</span>
+</div>
+<div id="toast"></div>
+
+<!--
+  Låtdata. Varje låt har exakt 5 ord (ett per lucka, i ordning) och "red" = vilka två luckor
+  (0–4, alltså lucka 1–5 minus ett) som är röda: då går svaret över till andra laget.
+  Utelämnas "red" slumpas två luckor. Använd bara texter du har rätt att använda.
+-->
+<script id="songs" type="application/json">
+[
+  { "title": "Tomtarnas julnatt", "lang": "svenska", "red": [1, 3], "words": ["Månen", "vandrar", "sin", "tysta", "ban"] },
+  { "title": "Jingle Bells", "lang": "engelska", "red": [0, 4], "words": ["In", "a", "one-horse", "open", "sleigh"] },
+  { "title": "Silent Night", "lang": "engelska", "red": [2, 4], "words": ["Shepherds", "quake", "at", "the", "sight"] },
+  { "title": "Joy to the World", "lang": "engelska", "red": [0, 2], "words": ["Let", "earth", "receive", "her", "King"] },
+  { "title": "Deck the Halls", "lang": "engelska", "red": [1, 4], "words": ["Troll", "the", "ancient", "Yuletide", "carol"] },
+  { "title": "O Come, All Ye Faithful", "lang": "engelska", "red": [3, 4], "words": ["O", "come,", "all", "ye", "faithful"] },
+  { "title": "Hark! The Herald Angels Sing", "lang": "engelska", "red": [0, 3], "words": ["Hark!", "The", "herald", "angels", "sing"] },
+  { "title": "We Wish You a Merry Christmas", "lang": "engelska", "red": [1, 2], "words": ["And", "a", "happy", "New", "Year"] },
+  { "title": "The First Noel", "lang": "engelska", "red": [2, 3], "words": ["Was", "to", "certain", "poor", "shepherds"] },
+  { "title": "God Rest Ye Merry, Gentlemen", "lang": "engelska", "red": [0, 1], "words": ["God", "rest", "ye", "merry,", "gentlemen"] },
+  { "title": "Good King Wenceslas", "lang": "engelska", "red": [1, 3], "words": ["Good", "King", "Wenceslas", "looked", "out"] },
+  { "title": "Away in a Manger", "lang": "engelska", "red": [2, 4], "words": ["The", "little", "Lord", "Jesus", "asleep"] },
+  { "title": "O Little Town of Bethlehem", "lang": "engelska", "red": [0, 4], "words": ["O", "little", "town", "of", "Bethlehem"] }
+]
+</script>
+
+<script>
+(() => {
+  'use strict';
+  const SONGS = JSON.parse(document.getElementById('songs').textContent);
+  const grid = document.getElementById('grid');
+  const answerEl = document.getElementById('answer');
+  const countEl = document.getElementById('count');
+  const startEl = document.getElementById('start');
+  const toastEl = document.getElementById('toast');
+
+  let order = SONGS.map((_, i) => i);
+  let pos = 0;
+  let started = false;
+  const opened = SONGS.map(() => new Set());   // öppnade luckor per låt
+  const answered = SONGS.map(() => false);     // svar visat per låt
+
+  const cur = () => SONGS[order[pos]];
+  const curId = () => order[pos];
+
+  function toast(msg, alert) {
+    toastEl.textContent = msg;
+    toastEl.classList.toggle('alert', !!alert);
+    toastEl.classList.add('on');
+    clearTimeout(toast.t);
+    toast.t = setTimeout(() => toastEl.classList.remove('on'), alert ? 2600 : 1400);
+  }
+
+  const redOf = SONGS.map(sg => (sg.red && sg.red.length ? sg.red : pickRed()));
+  function pickRed() {
+    const a = [0, 1, 2, 3, 4].sort(() => Math.random() - .5);
+    return a.slice(0, 2);
+  }
+  let showMarks = false;
+
+  function fit() {
+    grid.querySelectorAll('.back').forEach(face => {
+      const el = face.querySelector('.line');
+      el.style.fontSize = '';
+      let size = parseFloat(getComputedStyle(el).fontSize);
+      const avail = face.clientWidth * 0.84;
+      let guard = 40;
+      while (el.offsetWidth > avail && size > 8 && guard--) { size *= 0.93; el.style.fontSize = size + 'px'; }
+    });
+  }
+
+  function render() {
+    const song = cur();
+    const id = curId();
+    grid.textContent = '';
+    song.words.forEach((word, i) => {
+      const isRed = redOf[id].includes(i);
+      const card = document.createElement('div');
+      card.className = 'card instant' + (isRed ? ' red' : '') + (showMarks ? ' mark' : '');
+      if (opened[id].has(i)) card.classList.add('open');
+      card.innerHTML =
+        '<div class="inner">' +
+          '<div class="face front"><span class="num"></span></div>' +
+          '<div class="face back' + (isRed ? ' red' : '') + '"><span class="badge"></span><span class="line"></span>' +
+          (isRed ? '<span class="flag">Andra laget</span>' : '') + '</div>' +
+        '</div>';
+      card.querySelector('.num').textContent = i + 1;
+      card.querySelector('.badge').textContent = i + 1;
+      card.querySelector('.line').textContent = word;
+      card.setAttribute('aria-label', 'Lucka ' + (i + 1));
+      card.addEventListener('click', () => toggle(i));
+      grid.appendChild(card);
+    });
+    fit();
+    requestAnimationFrame(() => requestAnimationFrame(() =>
+      grid.querySelectorAll('.card').forEach(c => c.classList.remove('instant'))));
+    updateAnswer();
+    updateCount();
+  }
+
+  function updateCount() {
+    const id = curId();
+    countEl.textContent = `Låt ${pos + 1} / ${order.length} · ${opened[id].size} av 5 luckor`;
+  }
+
+  function updateAnswer() {
+    const song = cur();
+    answerEl.className = 'answer';
+    answerEl.textContent = '';
+    if (answered[curId()]) {
+      answerEl.classList.add('revealed');
+      const t = document.createElement('span'); t.className = 'title'; t.textContent = '♪ ' + song.title;
+      const l = document.createElement('span'); l.className = 'lang'; l.textContent = song.lang || '';
+      answerEl.append(t, l);
+    } else {
+      const q = document.createElement('span'); q.className = 'q';
+      q.textContent = 'Vilken låt är det?' + (song.lang ? '  (' + song.lang + ')' : '');
+      answerEl.append(q);
+    }
+  }
+
+  /* ---------- Womp ---------- */
+  let ac = null;
+  function audio() {
+    try {
+      if (!ac) ac = new (window.AudioContext || window.webkitAudioContext)();
+      if (ac.state === 'suspended') ac.resume();
+    } catch (e) { ac = null; }
+    return ac;
+  }
+  // Syntetiskt "wuh-WOMP" i tuba-/trumpetstil: två sågtandston med filter som öppnar sig ("bwah"),
+  // en kort låg ton följd av en högre som sväller. Ingen ljudfil behövs.
+  function brassNote(c, out, t, f1, dur, env, bright, scoop) {
+    const filt = c.createBiquadFilter();
+    filt.type = 'lowpass'; filt.Q.value = 2.5;
+    filt.frequency.setValueAtTime(f1 * 2.5, t);
+    filt.frequency.exponentialRampToValueAtTime(f1 * bright, t + 0.08);
+    filt.frequency.exponentialRampToValueAtTime(f1 * bright * 0.55, t + dur);
+    const g = c.createGain();
+    g.gain.setValueAtTime(0.0001, t);
+    env.forEach(([dt, v]) => g.gain.linearRampToValueAtTime(Math.max(v, 0.0001), t + dt));
+    g.gain.linearRampToValueAtTime(0.0001, t + dur);
+    filt.connect(g); g.connect(out);
+    const lfo = c.createOscillator(), lg = c.createGain();
+    lfo.frequency.value = 5.2; lg.gain.value = f1 * 0.012;
+    lfo.connect(lg);
+    [-7, 7].forEach(cents => {
+      const o = c.createOscillator();
+      o.type = 'sawtooth'; o.detune.value = cents;
+      o.frequency.setValueAtTime(f1 * scoop, t);
+      o.frequency.exponentialRampToValueAtTime(f1, t + 0.07);
+      lg.connect(o.frequency);
+      o.connect(filt);
+      o.start(t); o.stop(t + dur + 0.05);
+    });
+    lfo.start(t); lfo.stop(t + dur + 0.05);
+  }
+  function womp() {
+    const c = audio(); if (!c) return;
+    const t = c.currentTime + 0.02;
+    const out = c.createGain();
+    out.gain.value = 0.32;
+    out.connect(c.destination);
+    // 1: kort, lägre ton som klingar av
+    brassNote(c, out, t, 98, 0.44, [[0.04, 0.9], [0.18, 0.55], [0.38, 0.3]], 11, 0.92);
+    // 2: högre ton som sväller och släpper
+    brassNote(c, out, t + 0.46, 175, 0.42, [[0.05, 0.55], [0.3, 1.0], [0.38, 0.85]], 9, 0.9);
+  }
+
+  function toggle(i) {
+    const id = curId();
+    if (i < 0 || i >= 5) return;
+    const card = grid.children[i];
+    if (opened[id].has(i)) { opened[id].delete(i); card.classList.remove('open'); }
+    else {
+      opened[id].add(i); card.classList.add('open');
+      if (redOf[id].includes(i)) { womp(); toast('Över till andra laget!', true); }
+    }
+    updateCount();
+  }
+
+  function go(d) {
+    pos = (pos + d + order.length) % order.length;
+    render();
+  }
+
+  function setAll(open) {
+    const id = curId();
+    [0,1,2,3,4].forEach(i => open ? opened[id].add(i) : opened[id].delete(i));
+    grid.querySelectorAll('.card').forEach(c => c.classList.toggle('open', open));
+    if (!open) { answered[id] = false; updateAnswer(); }
+    updateCount();
+  }
+
+  function shuffle() {
+    for (let i = order.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [order[i], order[j]] = [order[j], order[i]];
+    }
+    pos = 0;
+    render();
+    toast('Låtordningen är blandad');
+  }
+
+  function fullscreen() {
+    try {
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+      } else {
+        const p = document.documentElement.requestFullscreen && document.documentElement.requestFullscreen();
+        if (p && p.catch) p.catch(() => toast('Fullskärm stöds inte här – öppna sidan i en egen flik'));
+      }
+    } catch (e) { toast('Fullskärm stöds inte här – öppna sidan i en egen flik'); }
+  }
+
+  function start() {
+    if (started) return;
+    started = true;
+    audio();
+    startEl.classList.add('hide');
+    fullscreen();
+    window.focus();
+  }
+
+  startEl.addEventListener('click', start);
+
+  document.getElementById('prev').addEventListener('click', () => go(-1));
+  document.getElementById('next').addEventListener('click', () => go(1));
+  answerEl.addEventListener('click', () => { answered[curId()] = !answered[curId()]; updateAnswer(); });
+
+  function toggleAnswer() { answered[curId()] = !answered[curId()]; updateAnswer(); }
+  function toggleMarks() {
+    showMarks = !showMarks;
+    grid.querySelectorAll('.card').forEach(c => c.classList.toggle('mark', showMarks));
+    toast(showMarks ? 'Röda luckor markerade' : 'Röda luckor dolda');
+  }
+  const ACT = {
+    prev: () => go(-1), next: () => go(1), answer: toggleAnswer,
+    all: () => setAll(true), none: () => setAll(false),
+    marks: toggleMarks, shuffle, fs: fullscreen
+  };
+
+  // Tryckbara kortkommandon (rör inte fokus, så tangentbordet fortsätter fungera)
+  document.getElementById('keys').addEventListener('mousedown', e => e.preventDefault());
+  document.getElementById('keys').addEventListener('click', e => {
+    const btn = e.target.closest('button'); if (!btn) return;
+    audio();
+    if (ACT[btn.dataset.act]) ACT[btn.dataset.act]();
+    btn.blur();
+  });
+
+  addEventListener('keydown', (e) => {
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    if (!started) { e.preventDefault(); start(); return; }
+    const k = e.key;
+    if (/^[1-5]$/.test(k)) { e.preventDefault(); toggle(Number(k) - 1); return; }
+    switch (k) {
+      case 'ArrowRight': case 'ArrowDown': case 'PageDown': e.preventDefault(); go(1); break;
+      case 'ArrowLeft': case 'ArrowUp': case 'PageUp': e.preventDefault(); go(-1); break;
+      case ' ': case 'Enter': e.preventDefault(); toggleAnswer(); break;
+      case 'a': case 'A': setAll(true); break;
+      case 'r': case 'R': setAll(false); break;
+      case 'm': case 'M': toggleMarks(); break;
+      case 's': case 'S': shuffle(); break;
+      case 'f': case 'F': fullscreen(); break;
+    }
+  });
+
+  addEventListener('resize', fit);
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+
+  /* ---------- Snöfall ---------- */
+  const canvas = document.getElementById('snow');
+  const ctx = canvas.getContext('2d');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let W = 0, H = 0, flakes = [];
+  function sizeCanvas() {
+    const dpr = Math.min(devicePixelRatio || 1, 2);
+    W = innerWidth; H = innerHeight;
+    canvas.width = W * dpr; canvas.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const count = Math.round(Math.min(160, W * H / 12000));
+    flakes = Array.from({ length: count }, () => ({
+      x: Math.random() * W, y: Math.random() * H,
+      r: 1 + Math.random() * 2.6, v: 18 + Math.random() * 40, s: Math.random() * Math.PI * 2
+    }));
+  }
+  let last = performance.now();
+  function tick(t) {
+    const dt = Math.min(0.05, (t - last) / 1000); last = t;
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = 'rgba(255,255,255,.75)';
+    for (const f of flakes) {
+      f.y += f.v * dt; f.s += dt;
+      f.x += Math.sin(f.s) * 12 * dt;
+      if (f.y > H + 5) { f.y = -5; f.x = Math.random() * W; }
+      ctx.beginPath(); ctx.arc(f.x, f.y, f.r, 0, 6.2832); ctx.fill();
+    }
+    requestAnimationFrame(tick);
+  }
+  sizeCanvas();
+  addEventListener('resize', sizeCanvas);
+  if (!reduce) requestAnimationFrame(tick);
+
+  render();
+})();
+</script>
+</body>
+</html>
