@@ -22,6 +22,7 @@ The interface text is in Swedish.
 | <kbd>M</kbd> | Mark the red cards with a dot (for the host) |
 | <kbd>S</kbd> | Shuffle the song order |
 | <kbd>F</kbd> | Toggle fullscreen |
+| <kbd>E</kbd> | Open the song editor (also a button on the start screen) |
 
 The key hints along the bottom are also buttons, for touch screens.
 
@@ -38,7 +39,29 @@ Then open <http://localhost:8000>. Any static file server works.
 
 ## Adding or editing songs
 
-All song data lives in [`songs.json`](songs.json), a JSON array with one object per song:
+### In the browser
+
+Press <kbd>E</kbd>, or click **Redigera låtar** on the start screen, to open the song editor. In it
+you can:
+
+- **Add or change a song:** type the title and language, paste a line from the song, and click
+  the word where the five cards should start. You can also type the five words directly. Click
+  **Röd** on two cards, or tick **Slumpa de röda luckorna** to pick them at random each time.
+- **Reorder, delete, or play a song** straight from the list.
+- **Upload a JSON file** in the format below, either replacing the list or adding to it.
+- **Download** the current list as `songs.json`.
+- **Reset** to the default list.
+
+Changes are saved in the browser's localStorage and are used in place of `songs.json` in that
+browser only. Nothing is uploaded anywhere. To publish a list, download it and commit it as
+`songs.json`. The editor also works when `index.html` is opened straight from disk.
+
+The page picks its song list in this order: the editor's saved list, then `songs.local.json`,
+then `songs.json`.
+
+### The songs.json format
+
+The published song list is [`songs.json`](songs.json), a JSON array with one object per song:
 
 ```json
 {
@@ -80,9 +103,10 @@ Sweden and the EU. Modern songs, including most Swedish Christmas favourites, ar
 publish here, even as a short quoted line. The songs
 shipped here are traditional carols and Alfred Smedberg's *Tomtarnas julnatt* (1898).
 
-For a private game with any songs you like, put them in `songs.local.json` next to `index.html`
-(same format). The page uses it instead of `songs.json` when it exists, and `.gitignore` keeps
-it out of the repository. Do not deploy a copy of the site that contains it.
+For a private game with any songs you like, add them in the editor, which keeps them in your
+browser. Alternatively, put them in `songs.local.json` next to `index.html` (same format). The
+page uses that file instead of `songs.json` when it exists, and `.gitignore` keeps it out of
+the repository. Do not deploy a copy of the site that contains it.
 
 ## Deploy your own copy
 
@@ -92,12 +116,6 @@ it out of the repository. Do not deploy a copy of the site that contains it.
    publishes the site to `https://<user>.github.io/<repo>/`.
 
 Pull requests run the same check without deploying.
-
-## Roadmap
-
-**Config UI (planned).** A small page for editing `songs.json` without touching JSON: add and
-remove songs, pick the 5 words of a song by splitting a pasted line, choose the 2 red cards,
-preview the round, and download the updated `songs.json`. Not built yet; see the issue tracker.
 
 ## License
 

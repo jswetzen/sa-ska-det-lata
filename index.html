@@ -144,6 +144,65 @@
   }
   #toast.on { opacity: 1; transform: translateX(-50%) translateY(0); }
 
+  /* ---------- Låtredigerare ---------- */
+  #start .edit-songs { margin-top: 1vmin; font: inherit; font-weight: 800; font-size: clamp(13px, 2vmin, 20px); color: var(--cream); background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.3); border-radius: 999px; padding: .5em 1.2em; cursor: pointer; }
+  #start .edit-songs:hover { background: rgba(255,255,255,.22); }
+  #editor { position: fixed; inset: 0; z-index: 20; background: rgba(3,20,16,.82); display: flex; justify-content: center; align-items: flex-start; overflow-y: auto; padding: clamp(8px, 3vmin, 40px); -webkit-user-select: text; user-select: text; }
+  #editor[hidden] { display: none; }
+  .ed-panel { width: min(960px, 100%); background: linear-gradient(170deg, #fffaf0, var(--cream)); color: var(--ink); border: 3px solid var(--gold); border-radius: 18px; padding: clamp(14px, 3vmin, 32px); box-shadow: 0 18px 50px rgba(0,0,0,.5); font-size: 16px; }
+  .ed-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .ed-panel h2 { font-family: var(--display); color: var(--red); font-size: clamp(28px, 5vmin, 44px); line-height: 1; }
+  .ed-panel h3 { font-size: 1.15em; margin-bottom: .6em; }
+  .ed-panel button { font: inherit; font-weight: 800; cursor: pointer; border-radius: .55em; padding: .45em .9em; border: 1px solid rgba(42,26,18,.25); background: #fff; color: var(--ink); }
+  .ed-panel button:hover { background: #fdf1cf; }
+  .ed-panel button.primary { background: var(--red); border-color: var(--red-deep); color: var(--cream); }
+  .ed-panel button.primary:hover { background: #c92a35; }
+  .ed-panel button:disabled { opacity: .45; cursor: default; }
+  .ed-close { width: 2.4em; height: 2.4em; padding: 0 !important; border-radius: 50% !important; }
+  .ed-src { margin: .4em 0 1em; opacity: .75; }
+  .ed-tools, .ed-actions { display: flex; flex-wrap: wrap; gap: .5em; }
+  .ed-msg { min-height: 1.4em; margin: .6em 0; font-weight: 800; color: var(--green); }
+  .ed-msg.bad, .ed-err { color: var(--red); font-weight: 800; }
+  #ed-form { border: 2px solid var(--gold); border-radius: 14px; padding: 1em; margin: .4em 0 1.2em; background: #fff; }
+  #ed-form label { display: block; font-weight: 800; margin-bottom: .7em; }
+  #ed-form label small { font-weight: 600; opacity: .7; }
+  #ed-form input[type=text] { display: block; width: 100%; margin-top: .25em; font: inherit; font-weight: 600; padding: .45em .6em; border: 1px solid rgba(42,26,18,.3); border-radius: .5em; background: #fffdf6; color: var(--ink); }
+  .ed-row { display: grid; grid-template-columns: 2fr 1fr; gap: 0 1em; }
+  .ed-chips { display: flex; flex-wrap: wrap; gap: .35em; margin: -.2em 0 .9em; }
+  .ed-chips:empty { display: none; }
+  .ed-chips button { padding: .25em .6em; font-weight: 600; }
+  .ed-chips button.in { background: var(--gold); border-color: var(--gold-deep); font-weight: 800; }
+  .ed-cards { display: grid; grid-template-columns: repeat(5, 1fr); gap: .6em; margin-bottom: .8em; }
+  .ed-card { border-radius: 12px; border: 3px solid var(--gold); background: var(--cream); padding: .5em; display: flex; flex-direction: column; gap: .4em; align-items: stretch; text-align: center; }
+  .ed-card .n { font-family: var(--display); font-size: 1.4em; line-height: 1; color: var(--green); }
+  .ed-card input[type=text] { margin: 0 !important; text-align: center; font-weight: 800 !important; padding: .4em .2em !important; }
+  .ed-card.red { background: linear-gradient(170deg, #d8323d, var(--red-deep)); }
+  .ed-card.red .n { color: var(--cream); }
+  .ed-card .ed-red { font-size: .85em; padding: .3em .4em; }
+  .ed-card.red .ed-red { background: var(--cream); color: var(--red); }
+  .ed-check { display: flex !important; align-items: center; gap: .5em; font-weight: 600 !important; }
+  .ed-check input { width: 1.2em; height: 1.2em; }
+  #ed-list { list-style: none; display: flex; flex-direction: column; gap: .4em; }
+  #ed-list li { display: grid; grid-template-columns: 2em 1fr auto; align-items: center; gap: .6em; padding: .45em .6em; border-radius: 10px; background: #fff; border: 1px solid rgba(42,26,18,.14); }
+  #ed-list .i { font-weight: 800; opacity: .55; text-align: right; }
+  #ed-list .t { font-weight: 800; }
+  #ed-list .t small { font-weight: 600; opacity: .6; margin-left: .4em; text-transform: uppercase; font-size: .7em; letter-spacing: .06em; }
+  #ed-list .w { font-size: .9em; opacity: .85; }
+  #ed-list .w b { color: var(--red); }
+  #ed-list .btns { display: flex; gap: .3em; flex-wrap: wrap; justify-content: flex-end; }
+  #ed-list .btns button { padding: .3em .55em; font-size: .9em; }
+  #ed-list .empty { display: block; text-align: center; opacity: .7; font-weight: 800; }
+  .ed-note { margin-top: 1.2em; font-size: .9em; opacity: .75; }
+  @media (max-width: 640px) {
+    .ed-row { grid-template-columns: 1fr; }
+    .ed-cards { grid-template-columns: 1fr; gap: .35em; }
+    .ed-card { flex-direction: row; align-items: center; padding: .3em .5em; }
+    .ed-card .n { width: 1.2em; }
+    .ed-card input[type=text] { flex: 1; min-width: 0; }
+    #ed-list li { grid-template-columns: 1.5em 1fr; }
+    #ed-list .btns { grid-column: 1 / -1; justify-content: flex-start; }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .inner { transition-duration: .01s; }
     #start .go { animation: none; }
@@ -177,6 +236,7 @@
     <span class="grp"><button data-act="marks">M</button><span class="lbl">visa röda</span></span>
     <span class="grp"><button data-act="shuffle">S</button><span class="lbl">blanda</span></span>
     <span class="grp"><button data-act="fs">F</button><span class="lbl">fullskärm</span></span>
+    <span class="grp"><button data-act="edit">E</button><span class="lbl">redigera låtar</span></span>
   </footer>
 </div>
 
@@ -186,6 +246,49 @@
   <p>Fem luckor, ett ord i varje. Två av dem är röda – öppnar ni en av dem går svaret över till andra laget. Tangent 1–5 väljer lucka, pilarna byter låt.</p>
   <p class="status" id="status">Laddar låtar…</p>
   <span class="go" hidden>Klicka eller tryck valfri tangent för att starta</span>
+  <button type="button" class="edit-songs" data-act="edit">Redigera låtar</button>
+</div>
+<div id="editor" hidden role="dialog" aria-modal="true" aria-labelledby="ed-title">
+  <div class="ed-panel">
+    <div class="ed-head">
+      <h2 id="ed-title">Redigera låtar</h2>
+      <button class="ed-close" data-ed="close" aria-label="Stäng">✕</button>
+    </div>
+    <p class="ed-src" id="ed-src"></p>
+    <div class="ed-tools">
+      <button class="primary" data-ed="new">+ Ny låt</button>
+      <button data-ed="import-replace">Ladda upp fil (ersätt)</button>
+      <button data-ed="import-append">Ladda upp fil (lägg till)</button>
+      <button data-ed="download">Ladda ner songs.json</button>
+      <button data-ed="reset">Återställ standardlistan</button>
+      <input type="file" id="ed-file" accept=".json,application/json" hidden>
+    </div>
+    <p class="ed-msg" id="ed-msg" role="status"></p>
+
+    <form id="ed-form" hidden autocomplete="off">
+      <h3 id="ed-form-title">Ny låt</h3>
+      <div class="ed-row">
+        <label>Titel <small>(svaret)</small><input type="text" name="title" required></label>
+        <label>Språk <small>(visas som ledtråd)</small><input type="text" name="lang" list="ed-langs" placeholder="svenska"></label>
+      </div>
+      <datalist id="ed-langs"><option value="svenska"><option value="engelska"></datalist>
+      <label>Textrad <small>(klistra in en rad och klicka på ordet där luckorna ska börja)</small>
+        <input type="text" name="line" placeholder="t.ex. Dashing through the snow in a one-horse open sleigh"></label>
+      <div class="ed-chips" id="ed-chips"></div>
+      <div class="ed-cards" id="ed-cards"></div>
+      <label class="ed-check"><input type="checkbox" name="randomRed"> Slumpa de röda luckorna</label>
+      <p class="ed-err" id="ed-err" role="alert"></p>
+      <div class="ed-actions">
+        <button type="submit" class="primary">Spara låten</button>
+        <button type="button" data-ed="cancel">Avbryt</button>
+      </div>
+    </form>
+
+    <ol id="ed-list"></ol>
+    <p class="ed-note">Ändringar sparas direkt i den här webbläsaren och används i stället för songs.json.
+      Ladda ner filen om du vill spara listan någon annanstans. Lägg bara in låtar med fria texter
+      (public domain) i en publik songs.json.</p>
+  </div>
 </div>
 <div id="toast"></div>
 
@@ -228,7 +331,7 @@
   }
 
   // songs.local.json (gitignored) wins if present; anything wrong with it falls back to songs.json.
-  async function loadSongs() {
+  async function loadFileSongs() {
     let data = null, file = 'songs.local.json';
     try { data = await fetchJson(file); }
     catch (e) {
@@ -253,8 +356,318 @@
       return !p;
     });
     if (!valid.length) throw new Error('Inga giltiga låtar hittades i ' + file + '. Se konsolen för detaljer.');
-    return valid;
+    return { songs: valid, source: file };
   }
+
+  /* ---------- Låtlista: källa och lagring ---------- */
+  // Priority: list saved by the editor (localStorage) > songs.local.json > songs.json.
+  const STORE = 'saSkaDetLata.songs.v1';
+  let songSource = '';
+
+  function readStored() {
+    let raw;
+    try { raw = localStorage.getItem(STORE); } catch (e) { return null; }
+    if (raw == null) return null;
+    try {
+      const d = JSON.parse(raw);
+      if (Array.isArray(d)) return d.filter(s => !songProblem(s));
+    } catch (e) { /* fall through */ }
+    console.warn('Ignoring unreadable song list in localStorage');
+    return null;
+  }
+  function writeStored(list) {
+    try { localStorage.setItem(STORE, JSON.stringify(list)); return true; }
+    catch (e) { console.error(e); return false; }
+  }
+  function clean(s) {
+    const o = { title: s.title.trim() };
+    if (typeof s.lang === 'string' && s.lang.trim()) o.lang = s.lang.trim();
+    if (s.red) o.red = [...s.red].sort((a, b) => a - b);
+    o.words = s.words.map(w => w.trim());
+    return o;
+  }
+
+  function applySongs(list, source) {
+    SONGS = list;
+    songSource = source;
+    redOf = SONGS.map(sg => sg.red || pickRed());
+    order = SONGS.map((_, i) => i);
+    opened = SONGS.map(() => new Set());   // öppnade luckor per låt
+    answered = SONGS.map(() => false);     // svar visat per låt
+    pos = Math.max(0, Math.min(pos, SONGS.length - 1));
+    ready = SONGS.length > 0;
+    if (!ready) {
+      grid.textContent = ''; answerEl.textContent = ''; countEl.textContent = '';
+      if (started) { started = false; startEl.classList.remove('hide'); }
+      showLoadError('Låtlistan är tom.');
+      return;
+    }
+    statusEl.hidden = true;
+    goEl.hidden = false;
+    render();
+  }
+  function showLoadError(html) {
+    ready = false;
+    goEl.hidden = true;
+    statusEl.hidden = false;
+    statusEl.innerHTML = html + '<br>Du kan också lägga in låtar själv med <b>Redigera låtar</b>.';
+  }
+
+  /* ---------- Låtredigerare ---------- */
+  const $ = id => document.getElementById(id);
+  const edEl = $('editor'), edList = $('ed-list'), edForm = $('ed-form'), edMsgEl = $('ed-msg');
+  const edSrc = $('ed-src'), edFile = $('ed-file'), edChips = $('ed-chips'), edCards = $('ed-cards'), edErr = $('ed-err');
+  const els = edForm.elements;
+  let editIndex = -1, formRed = [], lineWords = [], lineStart = 0, importMode = 'replace';
+  const editorOpen = () => !edEl.hidden;
+  const SOURCE_TEXT = {
+    browser: 'Listan är sparad i den här webbläsaren.',
+    'songs.local.json': 'Listan kommer från songs.local.json. Ändringar sparas i webbläsaren.',
+    'songs.json': 'Listan kommer från songs.json. Ändringar sparas i webbläsaren.',
+    '': 'Ingen låtlista är laddad.'
+  };
+
+  function openEditor() {
+    edEl.hidden = false;
+    edMsg('');
+    renderList();
+    edEl.querySelector('[data-ed=close]').focus();
+  }
+  function closeEditor() {
+    closeForm();
+    edEl.hidden = true;
+    if (document.activeElement) document.activeElement.blur();
+  }
+  function edMsg(text, bad) { edMsgEl.textContent = text; edMsgEl.classList.toggle('bad', !!bad); }
+
+  function commit(list, msg) {
+    const saved = writeStored(list);
+    applySongs(list, 'browser');
+    renderList();
+    edMsg(saved ? msg : 'Kunde inte spara i webbläsaren (privat läge eller fullt lagringsutrymme). ' +
+      'Ändringen gäller bara tills sidan laddas om.', !saved);
+  }
+
+  function renderList() {
+    edSrc.textContent = SOURCE_TEXT[songSource] + ' ' + SONGS.length + (SONGS.length === 1 ? ' låt.' : ' låtar.');
+    edList.textContent = '';
+    if (!SONGS.length) {
+      const li = document.createElement('li');
+      li.className = 'empty'; li.textContent = 'Inga låtar än. Klicka på "+ Ny låt" eller ladda upp en fil.';
+      edList.append(li);
+      return;
+    }
+    SONGS.forEach((s, i) => {
+      const li = document.createElement('li');
+      li.dataset.i = i;
+      li.innerHTML = '<span class="i"></span><div><div class="t"></div><div class="w"></div></div><div class="btns">' +
+        '<button data-ed="play">Spela</button><button data-ed="edit">Ändra</button>' +
+        '<button data-ed="up" aria-label="Flytta upp">↑</button><button data-ed="down" aria-label="Flytta ner">↓</button>' +
+        '<button data-ed="del">Ta bort</button></div>';
+      li.querySelector('.i').textContent = i + 1;
+      const t = li.querySelector('.t');
+      t.textContent = s.title;
+      if (s.lang) { const l = document.createElement('small'); l.textContent = s.lang; t.append(l); }
+      const w = li.querySelector('.w');
+      s.words.forEach((word, k) => {
+        if (k) w.append(' ');
+        if (s.red && s.red.includes(k)) { const b = document.createElement('b'); b.textContent = word; w.append(b); }
+        else w.append(word);
+      });
+      if (!s.red) w.append(' (röda luckor slumpas)');
+      li.querySelector('[data-ed=up]').disabled = i === 0;
+      li.querySelector('[data-ed=down]').disabled = i === SONGS.length - 1;
+      edList.append(li);
+    });
+  }
+
+  function openForm(i) {
+    editIndex = i;
+    const s = i >= 0 ? SONGS[i] : null;
+    edForm.hidden = false;
+    $('ed-form-title').textContent = s ? 'Ändra låt' : 'Ny låt';
+    els.title.value = s ? s.title : '';
+    els.lang.value = s ? (s.lang || '') : '';
+    els.line.value = '';
+    lineWords = []; lineStart = 0; renderChips();
+    formRed = s && s.red ? [...s.red] : [];
+    els.randomRed.checked = !!s && !s.red;
+    buildCards(s ? s.words : []);
+    edErr.textContent = '';
+    edMsg('');
+    edForm.scrollIntoView({ block: 'nearest' });
+    els.title.focus();
+  }
+  function closeForm() { edForm.hidden = true; editIndex = -1; }
+
+  function buildCards(words) {
+    edCards.textContent = '';
+    for (let i = 0; i < 5; i++) {
+      const c = document.createElement('div');
+      c.className = 'ed-card';
+      c.innerHTML = '<span class="n"></span><input type="text" class="ed-word"><button type="button" class="ed-red">Röd</button>';
+      c.querySelector('.n').textContent = i + 1;
+      const inp = c.querySelector('input');
+      inp.value = words[i] || '';
+      inp.setAttribute('aria-label', 'Ord i lucka ' + (i + 1));
+      c.querySelector('button').addEventListener('click', () => toggleRed(i));
+      edCards.append(c);
+    }
+    paintRed();
+  }
+  function paintRed() {
+    const random = els.randomRed.checked;
+    [...edCards.children].forEach((c, i) => {
+      const on = !random && formRed.includes(i);
+      c.classList.toggle('red', on);
+      const b = c.querySelector('.ed-red');
+      b.disabled = random;
+      b.setAttribute('aria-pressed', on);
+      b.textContent = on ? 'Röd ✓' : 'Röd';
+    });
+  }
+  function toggleRed(i) {
+    const k = formRed.indexOf(i);
+    if (k >= 0) formRed.splice(k, 1);
+    else { formRed.push(i); if (formRed.length > 2) formRed.shift(); }
+    paintRed();
+  }
+  els.randomRed.addEventListener('change', paintRed);
+
+  function renderChips() {
+    edChips.textContent = '';
+    lineWords.forEach((w, k) => {
+      const b = document.createElement('button');
+      b.type = 'button'; b.textContent = w;
+      if (k >= lineStart && k < lineStart + 5) b.className = 'in';
+      b.addEventListener('click', () => pickStart(k));
+      edChips.append(b);
+    });
+  }
+  function pickStart(k) {
+    lineStart = k;
+    renderChips();
+    const ws = lineWords.slice(k, k + 5);
+    edCards.querySelectorAll('.ed-word').forEach((inp, i) => { inp.value = ws[i] || ''; });
+  }
+  els.line.addEventListener('input', () => {
+    lineWords = els.line.value.trim().split(/\s+/).filter(Boolean);
+    pickStart(0);
+  });
+
+  edForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const words = [...edCards.querySelectorAll('.ed-word')].map(inp => inp.value.trim());
+    const random = els.randomRed.checked;
+    let err = '';
+    if (!els.title.value.trim()) err = 'Skriv låtens titel.';
+    else if (words.some(w => !w)) err = 'Alla fem luckor behöver ett ord.';
+    else if (!random && formRed.length !== 2) err = 'Välj två röda luckor, eller kryssa i "Slumpa de röda luckorna".';
+    const song = clean({ title: els.title.value, lang: els.lang.value, words, red: random ? undefined : formRed });
+    if (!err) err = songProblem(song);
+    const key = song.title.toLowerCase();
+    if (!err && SONGS.some((s, i) => i !== editIndex && s.title.trim().toLowerCase() === key))
+      err = 'Det finns redan en låt som heter "' + song.title + '".';
+    if (err) { edErr.textContent = err; return; }
+    const list = SONGS.slice();
+    if (editIndex >= 0) list[editIndex] = song; else list.push(song);
+    pos = editIndex >= 0 ? editIndex : list.length - 1;
+    closeForm();
+    commit(list, 'Sparade "' + song.title + '".');
+  });
+
+  edFile.addEventListener('change', async () => {
+    const f = edFile.files[0];
+    if (!f) return;
+    let data;
+    try { data = JSON.parse(await f.text()); }
+    catch (e) { edMsg(f.name + ' är inte giltig JSON.', true); return; }
+    if (data && !Array.isArray(data) && Array.isArray(data.songs)) data = data.songs;
+    if (!Array.isArray(data)) { edMsg(f.name + ' måste innehålla en lista (JSON-array) med låtar.', true); return; }
+    const append = importMode === 'append';
+    const ok = [];
+    const seen = new Set(append ? SONGS.map(s => s.title.trim().toLowerCase()) : []);
+    data.forEach((s, i) => {
+      let p = songProblem(s);
+      if (!p && seen.has(s.title.trim().toLowerCase())) p = 'duplicate title';
+      if (p) console.warn(`${f.name}: skipping song #${i + 1}: ${p}`);
+      else { ok.push(clean(s)); seen.add(s.title.trim().toLowerCase()); }
+    });
+    if (!ok.length) { edMsg('Inga nya giltiga låtar i ' + f.name + '. Se konsolen för detaljer.', true); return; }
+    const skipped = data.length - ok.length;
+    if (!append) pos = 0;
+    closeForm();
+    commit(append ? SONGS.concat(ok) : ok,
+      `${ok.length} ${ok.length === 1 ? 'låt' : 'låtar'} ${append ? 'tillagd' : 'inläst'}${ok.length === 1 ? '' : 'a'} från ${f.name}` +
+      (skipped ? `, ${skipped} hoppades över (ogiltiga eller dubbletter, se konsolen).` : '.'));
+  });
+
+  // One songs.json line per song, like the file in the repo.
+  function songsJsonText(list) {
+    const val = v => Array.isArray(v) ? '[' + v.map(x => JSON.stringify(x)).join(', ') + ']' : JSON.stringify(v);
+    const line = s => '{ ' + Object.entries(clean(s)).map(([k, v]) => JSON.stringify(k) + ': ' + val(v)).join(', ') + ' }';
+    return '[\n' + list.map(s => '  ' + line(s)).join(',\n') + '\n]\n';
+  }
+  function download() {
+    const url = URL.createObjectURL(new Blob([songsJsonText(SONGS)], { type: 'application/json' }));
+    const a = document.createElement('a');
+    a.href = url; a.download = 'songs.json';
+    document.body.append(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  }
+
+  function resetToDefault() {
+    if (!confirm('Ta bort låtlistan i den här webbläsaren och gå tillbaka till standardlistan?')) return;
+    try { localStorage.removeItem(STORE); } catch (e) { /* ignore */ }
+    closeForm();
+    edMsg('Laddar standardlistan…');
+    pos = 0;
+    loadFileSongs().then(r => {
+      applySongs(r.songs, r.source); renderList(); edMsg('Standardlistan är tillbaka.');
+    }, err => {
+      applySongs([], ''); showLoadError(err.message); renderList();
+      edMsg(err.message.replace(/<[^>]+>/g, ''), true);
+    });
+  }
+
+  edEl.addEventListener('click', e => {
+    if (e.target === edEl) { if (edForm.hidden) closeEditor(); return; }
+    const btn = e.target.closest('[data-ed]');
+    if (!btn) return;
+    const li = btn.closest('li');
+    const i = li ? Number(li.dataset.i) : -1;
+    const list = SONGS.slice();
+    switch (btn.dataset.ed) {
+      case 'close': closeEditor(); break;
+      case 'cancel': closeForm(); break;
+      case 'new': openForm(-1); break;
+      case 'import-replace': case 'import-append':
+        importMode = btn.dataset.ed === 'import-append' ? 'append' : 'replace';
+        edFile.value = ''; edFile.click(); break;
+      case 'download': download(); break;
+      case 'reset': resetToDefault(); break;
+      case 'edit': openForm(i); break;
+      case 'play':
+        pos = i; render(); closeEditor();
+        if (!started) start();
+        break;
+      case 'up': case 'down': {
+        const j = btn.dataset.ed === 'up' ? i - 1 : i + 1;
+        [list[i], list[j]] = [list[j], list[i]];
+        closeForm(); pos = j;
+        commit(list, 'Flyttade "' + list[j].title + '".');
+        break;
+      }
+      case 'del': {
+        const title = SONGS[i].title;
+        if (!confirm('Ta bort "' + title + '"?')) break;
+        list.splice(i, 1);
+        closeForm();
+        commit(list, 'Tog bort "' + title + '".');
+        break;
+      }
+    }
+  });
 
   function escapeHtml(t) {
     return String(t).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -442,6 +855,7 @@
   }
 
   startEl.addEventListener('click', start);
+  startEl.querySelector('.edit-songs').addEventListener('click', e => { e.stopPropagation(); openEditor(); });
 
   document.getElementById('prev').addEventListener('click', () => go(-1));
   document.getElementById('next').addEventListener('click', () => go(1));
@@ -456,7 +870,7 @@
   const ACT = {
     prev: () => go(-1), next: () => go(1), answer: toggleAnswer,
     all: () => setAll(true), none: () => setAll(false),
-    marks: toggleMarks, shuffle, fs: fullscreen
+    marks: toggleMarks, shuffle, fs: fullscreen, edit: openEditor
   };
 
   // Tryckbara kortkommandon (rör inte fokus, så tangentbordet fortsätter fungera)
@@ -469,7 +883,13 @@
   });
 
   addEventListener('keydown', (e) => {
+    if (editorOpen()) {
+      if (e.key === 'Escape') { e.preventDefault(); if (edForm.hidden) closeEditor(); else closeForm(); }
+      return;
+    }
     if (e.ctrlKey || e.metaKey || e.altKey) return;
+    if (e.key === 'e' || e.key === 'E') { e.preventDefault(); openEditor(); return; }
+    if (e.target.closest && e.target.closest('button') && (e.key === ' ' || e.key === 'Enter')) return;
     if (!started) { e.preventDefault(); start(); return; }
     const k = e.key;
     if (/^[1-5]$/.test(k)) { e.preventDefault(); toggle(Number(k) - 1); return; }
@@ -521,20 +941,9 @@
   addEventListener('resize', sizeCanvas);
   if (!reduce) requestAnimationFrame(tick);
 
-  loadSongs().then(songs => {
-    SONGS = songs;
-    redOf = SONGS.map(sg => sg.red || pickRed());
-    order = SONGS.map((_, i) => i);
-    opened = SONGS.map(() => new Set());   // öppnade luckor per låt
-    answered = SONGS.map(() => false);     // svar visat per låt
-    ready = true;
-    statusEl.hidden = true;
-    goEl.hidden = false;
-    render();
-  }, err => {
-    console.error(err);
-    statusEl.innerHTML = err.message;
-  });
+  const stored = readStored();
+  if (stored) applySongs(stored, 'browser');
+  else loadFileSongs().then(r => applySongs(r.songs, r.source), err => { console.error(err); showLoadError(err.message); });
 })();
 </script>
 </body>

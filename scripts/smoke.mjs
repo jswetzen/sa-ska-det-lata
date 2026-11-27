@@ -53,6 +53,29 @@ try {
   await page.keyboard.press(' ');
   check(await page.locator('#answer.revealed').count() === 1, 'Space did not reveal the answer');
 
+  // Song editor: add a song, it survives a reload, reset brings back songs.json.
+  page.on('dialog', d => d.accept());
+  const total = async () => Number((await count()).match(/\/ (\d+)/)[1]);
+  const n = await total();
+  await page.keyboard.press('e');
+  await page.click('[data-ed=new]');
+  await page.fill('[name=title]', 'Smoke Song');
+  await page.fill('[name=line]', 'one two three four five six');
+  await page.locator('#ed-chips button').nth(1).click();
+  await page.locator('.ed-red').nth(0).click();
+  await page.locator('.ed-red').nth(4).click();
+  await page.click('#ed-form button[type=submit]');
+  check(await total() === n + 1, 'editor did not add a song');
+  await page.reload();
+  await page.locator('#start .go').waitFor({ state: 'visible', timeout: 5000 });
+  check(await total() === n + 1, 'added song did not survive a reload');
+  await page.keyboard.press('e');
+  check(await page.locator('#ed-list li').last().locator('.w').textContent() === 'two three four five six',
+    'chip start did not pick words 2–6');
+  await page.click('[data-ed=reset]');
+  await page.locator('#ed-msg', { hasText: 'är tillbaka' }).waitFor({ timeout: 5000 });
+  check(await total() === n, 'reset did not restore songs.json');
+
   check(errors.length === 0, 'page errors: ' + errors.join('; '));
 } finally {
   await browser.close();
