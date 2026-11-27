@@ -1,0 +1,141 @@
+{
+  "category": "children & folk",
+  "candidates": [
+    {
+      "title": "Kring julgranen",
+      "first_line": "Nu så är det jul igen, jultomten myser",
+      "words": ["Nu", "så", "är", "det", "jul"],
+      "alt_words": null,
+      "lyricist": "Alice Tegnér",
+      "lyricist_died": 1943,
+      "translator": null,
+      "translator_died": null,
+      "published": 1899,
+      "sources": [
+        "https://sv.wikipedia.org/wiki/Kring_julgranen",
+        "https://sv.wikipedia.org/wiki/Alice_Tegn%C3%A9r"
+      ],
+      "confidence": "medium",
+      "notes": "Sv.wiki: text och musik av Alice Tegnér, first published 1899 in Sjung med oss, mamma! vol. 5. Tegnér's birth/death 1864-1943 confirmed on sv.wiki. First line is taken from the alternative title 'Nu så är det jul igen, jultomten myser' on the fetched page; the printed first line was not confirmed by a fetched text. Check the first verse before use."
+    },
+    {
+      "title": "Julpolska",
+      "first_line": "Nu ha vi ljus här i vårt hus",
+      "words": ["Nu", "ha", "vi", "ljus", "här"],
+      "alt_words": null,
+      "lyricist": "Rafael Hertzberg",
+      "lyricist_died": 1896,
+      "translator": null,
+      "translator_died": null,
+      "published": 1895,
+      "sources": [
+        "https://sv.wikipedia.org/wiki/Julpolska"
+      ],
+      "confidence": "medium",
+      "notes": "Sv.wiki: lyricist Rafael Hertzberg (1845-1896), composer Johanna Ölander (1827-1909). Text first published 1895 as 'Barnen dansa kring julgranen' in För smått folk. Alternative title 'Nu ha vi ljus här i vårt hus' is taken from the fetched page and used as the first line; not confirmed against printed lyrics. Melody from Ölander is not needed for this round (music does not matter)."
+    },
+    {
+      "title": "Nu tändas tusen juleljus",
+      "first_line": "Nu tändas tusen juleljus (first line not confirmed)",
+      "words": null,
+      "alt_words": null,
+      "lyricist": "Emmy Köhler",
+      "lyricist_died": 1925,
+      "translator": null,
+      "translator_died": null,
+      "published": 1898,
+      "sources": [
+        "https://sv.wikipedia.org/wiki/Nu_t%C3%A4ndas_tusen_juleljus",
+        "https://sv.wikipedia.org/wiki/Emmy_K%C3%B6hler"
+      ],
+      "confidence": "low",
+      "notes": "Sv.wiki: text and music by Emmy Köhler, published 1898 in the calendar Korsblomman for 1899. Köhler born 22 May 1858, died 2 February 1925 (sv.wiki). The title probably is the first line, so it cannot be used as the 5-word clue without an alt run. Word list not verified and alt_words not available; the lyrics need checking before use."
+    },
+    {
+      "title": "Julbocken",
+      "first_line": "En jul när mor var liten (alternative title, first line not confirmed)",
+      "words": ["En", "jul", "när", "mor", "var"],
+      "alt_words": null,
+      "lyricist": "Alice Tegnér",
+      "lyricist_died": 1943,
+      "translator": null,
+      "translator_died": null,
+      "published": 1913,
+      "sources": [
+        "https://en.wikipedia.org/wiki/Julbocken_(song)",
+        "https://sv.wikipedia.org/wiki/Julbocken_(sång)",
+        "https://sv.wikipedia.org/wiki/Alice_Tegn%C3%A9r"
+      ],
+      "confidence": "low",
+      "notes": "EN wiki: Songwriter Alice Tegnér, published 1913 in Sjung med oss, Mamma! 6. Sv.wiki lists the alternative title 'En jul när mor var liten' and says 'av Alice Tegnér', but does not say whether she wrote lyrics, music or both. The 5-word run is taken from that alternative title, not from the printed first line. Verify the first line and that the lyrics are by Tegnér before use."
+    },
+    {
+      "title": "Räven raskar över isen",
+      "first_line": "Hå, hå, Räfwen han låckar på isen (1689 printed opening, old spelling)",
+      "words": ["Hå,", "hå,", "Räfwen", "han", "låckar"],
+      "alt_words": null,
+      "lyricist": "Traditional",
+      "lyricist_died": null,
+      "translator": null,
+      "translator_died": null,
+      "published": 1689,
+      "sources": [
+        "https://sv.wikipedia.org/wiki/R%C3%A4ven_raskar_%C3%B6ver_isen",
+        "https://www.wikipedia.org/wiki/R%C3%A4ven_raskar_%C3%B6ver_isen"
+      ],
+      "confidence": "medium",
+      "notes": "Traditional ring/sånglek song. Sv.wiki gives no author; the earliest printed text is Rudbeck's Atlantica (1689), and the opening quoted there is old spelling, which the first line here uses. The modern sung text (title in the first line) differs. Early-1970s texts by Gullan Bornemark are a later rewrite and must not be used. Modern wording needs checking against the 1897 Sefve or 1926 Schömström prints before use."
+    },
+    {
+      "title": "Staffan var en stalledräng",
+      "first_line": "Staffan var en stalledräng (not confirmed)",
+      "words": null,
+      "alt_words": null,
+      "lyricist": "Traditional",
+      "lyricist_died": null,
+      "translator": null,
+      "translator_died": null,
+      "published": null,
+      "sources": [
+        "https://historiska.se/en/explore-history/history-hub/staffan-the-stable-boy/",
+        "https://old.capricemusic.se/svensktvisarkiv/files/2017/06/Vislex_Staffan_stalledr%C3%A4ng.pdf"
+      ],
+      "confidence": "low",
+      "notes": "Traditional Staffan song (Staffanssång, 26 December); Vislex from Svenskt visarkiv names Dag Strömbäck's 1960 study. The Vislex PDF is binary and could not be read, so the first line, earliest documented date and any later rewrite are unverified. Title is very likely in the first line, so an alt_words run from the first verse is needed. Do not use until checked."
+    },
+    {
+      "title": "Hej tomtegubbar",
+      "first_line": "Hej tomtegubbar (not confirmed)",
+      "words": null,
+      "alt_words": null,
+      "lyricist": "Traditional",
+      "lyricist_died": null,
+      "translator": null,
+      "translator_died": null,
+      "published": 1833,
+      "sources": [
+        "https://sv.wikipedia.org/wiki/Hej_tomtegubbar"
+      ],
+      "confidence": "low",
+      "notes": "Sv.wiki: melody printed 1815 without words; a text fragment appears in a record from 1833; songbook credits list it as folk material. No named lyricist found. Words not verified and the title is likely the first line, so alt_words are needed. The 1833 date is the earliest documented text, and it is pre-1930."
+    }
+  ],
+  "rejected": [
+    {
+      "title": "Tre pepparkaksgubbar",
+      "reason": "Lyrics by Astrid Forsell-Gullstrand, first published 1913, but no fetched source gives her death year (sv.wiki link is red, en.wiki says 'not stated'). Cannot confirm died <= 1955."
+    },
+    {
+      "title": "Nu är det jul igen",
+      "reason": "Swedish text credited to Mads Hansen (Danish poet, 'Nu har vi jul igen'); sv.wiki gives no birth or death years, so the death-year rule cannot be verified. Swedish text published in 1997 (Julens önskesångbok), so the 1930 rule also needs a verifiable earlier source."
+    },
+    {
+      "title": "Små grodorna",
+      "reason": "Sources conflict: en.wiki says Traditional, published 1922; Nordstjernan suggests Inez Mallander wrote the text around 1900. The sv.wiki page for Mallander returned 404, so her death year cannot be verified. Authorship is unresolved."
+    },
+    {
+      "title": "Mössens julafton",
+      "reason": "Swedish version of Alf Prøysen's 'Musevisa' (Norway, 1946), not a traditional text. The Swedish words are credited to Ulf Peder Olrog (or Prøysen per one book record); neither death year was verified from a fetched page, and the text is post-1930 in any case."
+    }
+  ]
+}

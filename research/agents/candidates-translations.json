@@ -1,0 +1,94 @@
+{
+  "category": "Swedish translations",
+  "candidates": [
+    {
+      "title": "Stilla natt, heliga natt",
+      "first_line": "Stilla natt, heliga natt, över jord gjuter",
+      "words": ["Stilla", "natt,", "heliga", "natt,", "över"],
+      "alt_words": null,
+      "lyricist": "Joseph Mohr",
+      "lyricist_died": null,
+      "translator": "Carl Oscar Mannström",
+      "translator_died": 1938,
+      "published": 1915,
+      "sources": [
+        "https://sv.wikipedia.org/wiki/Stilla_natt,_heliga_natt",
+        "https://sv.wikipedia.org/wiki/Oscar_Mannström",
+        "https://sv.wikisource.org/wiki/Stilla_natt,_heliga_natt",
+        "https://sv.wikipedia.org/wiki/Torsten_Fogelqvist",
+        "https://hymnary.org/text/stilla_natt_heliga_natt_over_jord_gjuter"
+      ],
+      "confidence": "medium",
+      "notes": "Mannström born 1875, died 1938 (sv.wikipedia). Translation dated 1915 (sv.wikipedia; sv.wikisource lists 'Stilla natt (Mannström)' 1915). Alternative pre-1931 version: Edvard Evers (1853-1919), adaptation 1917, same article. The commonly sung text is the Torsten Fogelqvist (1880-1941) 1937 revision, which still meets the 1955 rule. Joseph Mohr's death year was not in any fetched source, so lyricist_died is null. The first line comes from the hymnary URL slug, not from quoted lyrics, so verify it. The title is in the first five words, so this round is too easy: alt_words is still needed. Take a 5-word run from verse 1, line 2 of the Mannström text. Sources do not give Mannström's exact publication date beyond the 1915 translation date."
+    },
+    {
+      "title": "Ett barn är fött på denna dag",
+      "first_line": "Ett barn är fött på denna dag",
+      "words": ["Ett", "barn", "är", "fött", "på"],
+      "alt_words": null,
+      "lyricist": "Olaus Martini",
+      "lyricist_died": 1609,
+      "translator": "Johan Olof Wallin (adaptation, 1817)",
+      "translator_died": 1839,
+      "published": 1817,
+      "sources": [
+        "https://sv.wikipedia.org/wiki/Ett_barn_är_fött_på_denna_dag",
+        "https://sv.wikipedia.org/wiki/Johan_Olof_Wallin"
+      ],
+      "confidence": "medium",
+      "notes": "Based on Luther's 'Vom Himmel hoch'. Olaus Martini (d. 1609) wrote the Swedish text, dated 1617 in print. Wallin (1779-1839, sv.wikipedia) reworked it in 1817. Samuel Ödmann also reworked it early; his dates were not verified, so check whether his version is the one sung before using it. The sv.wikipedia article gives a 1913 publication for the song in Kyrklig sång. The first line matches the article title (fetched metadata). Sources disagree on whether Martini or Luther wrote the Swedish text (singpraises.net names Luther). Wallin's entry on sv.wikipedia was truncated before the hymn list, so his credit for this hymn is taken from the Ett barn article."
+    },
+    {
+      "title": "Det är en ros utsprungen",
+      "first_line": "Det är en ros utsprungen",
+      "words": ["Det", "är", "en", "ros", "utsprungen"],
+      "alt_words": null,
+      "lyricist": "unverified (German original 'Es ist ein Ros entsprungen')",
+      "lyricist_died": null,
+      "translator": "Thekla Knös",
+      "translator_died": 1880,
+      "published": 1867,
+      "sources": [
+        "https://sv.wikipedia.org/wiki/Thekla_Knös",
+        "https://sv.wikipedia.org/wiki/Det_är_en_ros_utsprungen",
+        "https://hymnary.org/text/det_ar_en_ros_utsprungen"
+      ],
+      "confidence": "low",
+      "notes": "Thekla Knös (1815-1880) credited as translator on sv.wikipedia, translation dated 1867. Sv.wikipedia gives first Swedish printing as the 1921 Swedish psalmbok, and the 1937 hymnbook as no. 51. Hymnary.org lists the translator as anonymous, so the attribution is disputed. Fetched metadata for the first line matches the title, so the five words are the title: alt_words is needed and was not obtained. Lyricist of the German original is not verified; the lyricist field is left as a placeholder. Check the original author before using this. Lower-confidence candidate."
+    }
+  ],
+  "rejected": [
+    {
+      "title": "O helga natt (Adolphe Adam, Cappeau)",
+      "reason": "Augustin Kock (1886-1956) credited with the Swedish text or verse 2; sv.wikipedia gives 1956 death, which is after 1955. The 1889 text is anonymous, so no pre-1956 translator is confirmed."
+    },
+    {
+      "title": "Bjällerklang (Jingle Bells)",
+      "reason": "Translators Eric Sandström and Gösta Westerberg named on sv.wikipedia, but no death years found in any fetched source."
+    },
+    {
+      "title": "O du saliga, o du heliga",
+      "reason": "German original by Falk and Holzschuher; Swedish translation of 1859 is anonymous on sv.wikipedia, so no translator is confirmed."
+    },
+    {
+      "title": "O julgran (O Tannenbaum; 'Du kära gran')",
+      "reason": "Swedish translator not identified in any fetched source."
+    },
+    {
+      "title": "Kom, alla kristna (Adeste fideles)",
+      "reason": "Swedish translator not identified; only English Oakeley (1841) found."
+    },
+    {
+      "title": "Stilla natt (1864 anonymous version)",
+      "reason": "Translator unknown (sv.wikisource lists 'okänd översättning', 1864)."
+    },
+    {
+      "title": "Härlig är jorden (Ingemann, Dejlig er jorden)",
+      "reason": "Not a rejection on the PD rule: Cecilia Bååth-Holmberg (1857-1920) translated it, dated 1884 on sv.wikipedia. Held back because the first line could not be verified (hymnary URL returned 404). Retry with a verified first line."
+    },
+    {
+      "title": "Från himlens höjd jag bringar bud (Luther, Vom Himmel hoch)",
+      "reason": "Source page returned 404; translator of the modern Swedish text not verified."
+    }
+  ]
+}

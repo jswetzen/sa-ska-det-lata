@@ -1,0 +1,110 @@
+{
+  "category": "hymns",
+  "candidates": [
+    {
+      "title": "Var hälsad, sköna morgonstund",
+      "first_line": "Var hälsad, sköna morgonstund",
+      "words": ["Var", "hälsad,", "sköna", "morgonstund"],
+      "alt_words": null,
+      "lyricist": "Johan Olof Wallin",
+      "lyricist_died": 1839,
+      "translator": null,
+      "translator_died": null,
+      "published": 1819,
+      "sources": [
+        "https://sv.wikisource.org/wiki/Den_svenska_psalmboken_(1819)",
+        "https://sv.wikisource.org/wiki/Var_hälsad,_sköna_morgonstund",
+        "https://sv.wikipedia.org/wiki/Johan_Olof_Wallin"
+      ],
+      "confidence": "medium",
+      "notes": "Lyricist death (1839), 1819 publication and hymn number 55 confirmed from fetched pages. The title is the first line, so the 5-word run is not verified and is only 4 words; alt_words must be set from verse 1 before use. Too easy as written."
+    },
+    {
+      "title": "Bereden väg för Herran",
+      "first_line": "Bereden väg för Herran",
+      "words": ["Bereden", "väg", "för", "Herran"],
+      "alt_words": null,
+      "lyricist": "Frans Michael Franzén",
+      "lyricist_died": 1847,
+      "translator": null,
+      "translator_died": null,
+      "published": 1812,
+      "sources": [
+        "https://sv.wikisource.org/wiki/Den_svenska_psalmboken_(1819)",
+        "https://sv.wikisource.org/wiki/Bereden_väg_för_Herran",
+        "https://sv.wikipedia.org/wiki/Frans_Michael_Franzén"
+      ],
+      "confidence": "medium",
+      "notes": "Franzén d. 14 Aug 1847 (sv.wikipedia), first published 1812 and listed as no. 53 in the 1819 Advent section (sv.wikisource). Title equals the first line, so the 5-word run is not verified and is only 4 words; alt_words must be set from verse 1 before use."
+    },
+    {
+      "title": "Gör porten hög, gör dörren bred",
+      "first_line": "Gör porten hög, gör dörren bred",
+      "words": ["Gör", "porten", "hög,", "gör", "dörren"],
+      "alt_words": null,
+      "lyricist": "Georg Weissel",
+      "lyricist_died": 1635,
+      "translator": "Jakob Arrhenius; revised by Jesper Swedberg and Johan Olof Wallin",
+      "translator_died": 1725,
+      "published": 1694,
+      "sources": [
+        "https://sv.wikisource.org/wiki/Den_svenska_psalmboken_(1819)",
+        "https://sv.wikisource.org/wiki/Gör_porten_hög,_gör_dörren_bred",
+        "https://sv.wikipedia.org/wiki/Jakob_Arrhenius",
+        "https://sv.wikipedia.org/wiki/Jesper_Swedberg",
+        "https://sv.wikipedia.org/wiki/Johan_Olof_Wallin",
+        "https://de.wikipedia.org/wiki/Georg_Weissel"
+      ],
+      "confidence": "low",
+      "notes": "Chain: Weissel (d. 1635 per de.wikipedia disambiguation page), Arrhenius translation 1694 (d. 13 Apr 1725), Swedberg revision (d. 1735), Wallin 1816 revision printed 1819 (d. 1839). Qualifies, but the title is 6 words and most of it is the first five words, so alt_words is required from verse 1. Verse text was not retrievable with the available tools."
+    },
+    {
+      "title": "Världens Frälsare kom här",
+      "first_line": "Världens Frälsare kom här",
+      "words": ["Världens", "Frälsare", "kom", "här"],
+      "alt_words": null,
+      "lyricist": "Olaus Petri",
+      "lyricist_died": 1552,
+      "translator": "Johan Olof Wallin (revision)",
+      "translator_died": 1839,
+      "published": 1536,
+      "sources": [
+        "https://sv.wikisource.org/wiki/Den_svenska_psalmboken_(1819)",
+        "https://sv.wikisource.org/wiki/Världens_Frälsare_kom_här",
+        "https://sv.wikipedia.org/wiki/Olaus_Petri",
+        "https://sv.wikipedia.org/wiki/Johan_Olof_Wallin"
+      ],
+      "confidence": "low",
+      "notes": "Olaus Petri translated it from Luther, first published 1536 in Swenske Songer (d. 19 Apr 1552). Wallin revised it (d. 1839). Title equals the first line and is only 4 words, so the 5-word run is not verified; alt_words must be set from verse 1 before use."
+    },
+    {
+      "title": "Av himlens höjd oss kommet är",
+      "first_line": "Av himlens höjd oss kommet är",
+      "words": ["Av", "himlens", "höjd", "oss", "kommet"],
+      "alt_words": null,
+      "lyricist": "Olaus Martini",
+      "lyricist_died": 1609,
+      "translator": "Samuel Ödmann and Johan Olof Wallin (1817 reworking)",
+      "translator_died": 1829,
+      "published": 1695,
+      "sources": [
+        "https://sv.wikisource.org/wiki/Av_himlens_h%C3%B6jd_oss_kommet_%C3%A4r",
+        "https://sv.wikipedia.org/wiki/Olaus_Martini",
+        "https://sv.wikipedia.org/wiki/Samuel_Ödmann",
+        "https://sv.wikipedia.org/wiki/Johan_Olof_Wallin"
+      ],
+      "confidence": "low",
+      "notes": "Luther's Vom Himmel hoch, Swedish text by Olaus Martini (1557-1609), reworked by Ödmann (d. 2 Oct 1829) and Wallin (d. 1839) in 1817; 1695 psalmbok listing is the earliest date the page names. Title is 6 words, so the first 5 words are most of it; alt_words is required from verse 1. Verse text was not retrievable with the available tools."
+    }
+  ],
+  "rejected": [
+    { "title": "Den signade dag", "reason": "Danish original (Grundtvig, d. 1872 per general knowledge, not fetched); no fetched Swedish text qualifies" },
+    { "title": "Gläd dig, du Kristi brud", "reason": "Lyricist Samuel Johan Hedborn d. 26 Dec 1849 (fetched), but the fetched page gives 1695 psalmbok as earliest date, which conflicts with the 1819 date; not confirmed" },
+    { "title": "Se, natten flyr för dagens fröjd", "reason": "sv.wikisource page returned 404 for the URL tried; author not verified" },
+    { "title": "Jerusalem, häv upp din röst", "reason": "sv.wikisource page returned 404 for the URL tried; author not verified" },
+    { "title": "Hosianna, Davids son", "reason": "not checked (time limit)" },
+    { "title": "När juldagsmorgon glimmar", "reason": "not checked (time limit)" },
+    { "title": "Dagen är kommen", "reason": "not checked (time limit)" },
+    { "title": "Ett barn är fött på denna dag", "reason": "not checked (time limit)" }
+  ]
+}

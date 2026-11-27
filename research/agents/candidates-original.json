@@ -1,0 +1,121 @@
+{
+  "category": "original Swedish songs",
+  "candidates": [
+    {
+      "title": "Jul, jul, strålande jul",
+      "first_line": "Jul, jul, strålande jul, glans över vita skogar,",
+      "words": ["Jul,", "jul,", "strålande", "jul,", "glans"],
+      "alt_words": ["himmelens", "kronor", "med", "gnistrande", "ljus"],
+      "lyricist": "Edvard Evers",
+      "lyricist_died": 1919,
+      "translator": null,
+      "translator_died": null,
+      "published": 1921,
+      "sources": [
+        "https://sv.wikipedia.org/wiki/Edvard_Evers",
+        "https://sv.wikipedia.org/wiki/Jul,_jul,_str%C3%A5lande_jul",
+        "https://sv.wikisource.org/wiki/Jul,_jul,_str%C3%A5lande_jul"
+      ],
+      "confidence": "high",
+      "notes": "Evers born 12 May 1853, died 22 Oct 1919 (sv.wikipedia). Infobox publication year 1921 (sv.wikipedia; song is music by Gustaf Nordqvist, which does not matter). First line from sv.wikisource verse 1. The title is the first four words of the line, so alt_words is used."
+    },
+    {
+      "title": "Gläns över sjö och strand (Betlehems stjärna)",
+      "first_line": "Gläns över sjö och strand,",
+      "words": ["Gläns", "över", "sjö", "och", "strand,"],
+      "alt_words": ["stjärna", "ur", "fjärran,", "du,", "som"],
+      "lyricist": "Viktor Rydberg",
+      "lyricist_died": 1895,
+      "translator": null,
+      "translator_died": null,
+      "published": 1891,
+      "sources": [
+        "https://sv.wikisource.org/wiki/Betlehems_stj%C3%A4rna",
+        "https://sv.wikipedia.org/wiki/Gl%C3%A4ns_%C3%B6ver_sj%C3%B6_och_strand",
+        "https://sv.wikipedia.org/wiki/Viktor_Rydberg"
+      ],
+      "confidence": "high",
+      "notes": "Poem first printed in Rydberg's novel Vapensmeden, 1891 (sv.wikisource and sv.wikipedia). Rydberg's death year 1895 is taken from the sv.wikipedia page's category 'Avlidna 1895' (page fetched; the category was read, not the infobox). Alice Tegnér's 1893 setting is music only. The song is the Betlehems stjärna hymn, so it may also be listed in the hymns category; check for duplicates with the hymn agent. The original-poem text on sv.wikisource is the 1891 text."
+    },
+    {
+      "title": "Nu tändas tusen juleljus",
+      "first_line": "Nu tändas tusen juleljus",
+      "words": ["Nu", "tändas", "tusen", "juleljus", "på"],
+      "alt_words": ["och", "tusen,", "tusen", "stråla", "ock"],
+      "lyricist": "Emmy Köhler",
+      "lyricist_died": 1925,
+      "translator": null,
+      "translator_died": null,
+      "published": 1899,
+      "sources": [
+        "https://sv.wikipedia.org/wiki/Emmy_K%C3%B6hler",
+        "https://sv.wikisource.org/wiki/Nu_t%C3%A4ndas_tusen_juleljus",
+        "https://sv.wikipedia.org/wiki/Nu_t%C3%A4ndas_tusen_juleljus"
+      ],
+      "confidence": "high",
+      "notes": "Köhler born 22 May 1858, died 2 Feb 1925 (sv.wikipedia). Diktad 1898, first printed in the yearbook Korsblomman 1899 (sv.wikipedia); later in Svensk söndagsskolsångbok 1929 (sv.wikisource). The title equals the first four words, so alt_words is used. Her own melody, so text-only public-domain status applies."
+    },
+    {
+      "title": "Giv mig ej glans, ej guld, ej prakt",
+      "first_line": "Giv mig ej glans, ej guld, ej prakt",
+      "words": ["Giv", "mig", "ej", "glans,", "ej"],
+      "alt_words": ["giv", "mig", "en", "fest", "som"],
+      "lyricist": "Zacharias Topelius",
+      "lyricist_died": 1898,
+      "translator": null,
+      "translator_died": null,
+      "published": 1887,
+      "sources": [
+        "https://sv.wikisource.org/wiki/Giv_mig_ej_glans,_ej_guld,_ej_prakt",
+        "https://sv.wikipedia.org/wiki/Zacharias_Topelius"
+      ],
+      "confidence": "medium",
+      "notes": "Topelius born 14 Jan 1818, died 12 Mar 1898 (sv.wikipedia infobox). Sv.wikisource gives only 'Diktad 1887' and lists it in Psalmer, vol. 4 of Topelius' samlade skrifter (a posthumous collected edition), so the first printing date is NOT verified and must be checked before use. The first line is the title. The alt_words line is from the chorus of verse 1. Possibly a psalm/hymn: check for overlap with the hymn agent."
+    },
+    {
+      "title": "Nu så kommer julen, nu är julen här (Julvisa)",
+      "first_line": "Nu så kommer julen, nu är julen här",
+      "words": ["Nu", "så", "kommer", "julen,", "nu"],
+      "alt_words": null,
+      "lyricist": "Zacharias Topelius",
+      "lyricist_died": 1898,
+      "translator": null,
+      "translator_died": null,
+      "published": 1857,
+      "sources": [
+        "https://sv.wikipedia.org/wiki/Nu_s%C3%A5_kommer_julen",
+        "https://sv.wikipedia.org/wiki/Zacharias_Topelius"
+      ],
+      "confidence": "medium",
+      "notes": "sv.wikipedia infobox: text by Topelius, published 1857; melody settings by Richard Norén (1875, Norén d. 1922) and Alice Tegnér (1895). Topelius death 1898 from the infobox. The first line is taken from the article title, not from a fetched verse, so the printed wording is NOT verified. The title contains the first five words, so a second verse line is needed for alt_words; none was fetched, so alt_words is null. Do not use until a verse is fetched."
+    },
+    {
+      "title": "Sankta Lucia, ljusklara hägring",
+      "first_line": "Sankta Lucia, ljusklara hägring",
+      "words": null,
+      "alt_words": null,
+      "lyricist": "Sigrid Elmblad",
+      "lyricist_died": 1926,
+      "translator": null,
+      "translator_died": null,
+      "published": 1924,
+      "sources": [
+        "https://sv.wikipedia.org/wiki/Sigrid_Elmblad",
+        "https://sv.wikipedia.org/wiki/Luciasången"
+      ],
+      "confidence": "low",
+      "notes": "Lucia article (sv.wikipedia, Luciasången): 'Sankta Lucia, ljusklara hägring', by Sigrid Elmblad (1860-1926), published 1924. Elmblad's death year 1926 is from the sv.wikipedia infobox (born 28 May 1860, died 23 May 1926). The full first line as printed is NOT verified: no fetched source printed the verse, and the title shown here is only the opening phrase. words and alt_words are null until someone reads the verse text from a fetched source (a songbook or Svensk visarkiv). The melody is Neapolitan, which does not matter. The other Swedish Lucia text, 'Natten går tunga fjät' by Arvid Rosén, is rejected below."
+    }
+  ],
+  "rejected": [
+    { "title": "Natten går tunga fjät (Lucia, Arvid Rosén)", "reason": "lyricist Arvid Rosén died 1973 (1895-1973), text printed 1928; sv.wikipedia Luciasången" },
+    { "title": "Ute är mörkt och kallt", "reason": "lyricist Halldis Ljungquist, text dated 1958 (sv.wikipedia Luciasången)" },
+    { "title": "Det strålar en stjärna / När det lider mot jul", "reason": "lyricist Jeanna Oterdahl died 27 July 1965 (sv.wikipedia)" },
+    { "title": "Julsång (Svävande ur rymden dala flingorna)", "reason": "lyricist Daniel Fallström died 1937 (1858-1937, Svensk musik page); text c. 1912" },
+    { "title": "Julsång (Hugo Alfvén, text Evert Evers, pub. 1911)", "reason": "lyricist Evert Evers: no birth or death years found on the fetched Svensk musik page, so the public-domain rule cannot be confirmed" },
+    { "title": "Tomtarnas vaktparad", "reason": "no Swedish lyricist found in any fetched source; Svensk musik lists it only as a translation of Heinzelmännchens Wachtparade (German original, Kopisch) without naming the translator" },
+    { "title": "Tomten (Rydberg)", "reason": "poem, first published 1881 in Ny Illustrerad Tidning; not a song as sung, so it does not meet the song requirement (Rydberg d. 1895 is fine)" },
+    { "title": "Kring julgranen / Julbocken (Alice Tegnér)", "reason": "out of scope for this agent (Alice Tegnér children's songs, covered by another agent); not checked for the rule" },
+    { "title": "Nu stråla tända ljus uti din krona", "reason": "earliest Lucia text (school songbook 1921) with no author found in any fetched source" }
+  ]
+}
