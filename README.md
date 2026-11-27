@@ -101,7 +101,8 @@ run, as on NixOS, point it at a system Chromium with `CHROMIUM_PATH=$(command -v
 site are public, and song lyrics are copyrighted for 70 years after the lyricist's death in
 Sweden and the EU. Modern songs, including most Swedish Christmas favourites, are not free to
 publish here, even as a short quoted line. The songs
-shipped here are traditional carols and Alfred Smedberg's *Tomtarnas julnatt* (1898).
+shipped here are Swedish traditional songs and texts by authors who died in 1955 or earlier, published
+in 1930 or earlier; the sources are listed in [`research/song-candidates.md`](research/song-candidates.md).
 
 For a private game with any songs you like, add them in the editor, which keeps them in your
 browser. Alternatively, put them in `songs.local.json` next to `index.html` (same format). The
